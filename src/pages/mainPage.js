@@ -1,8 +1,8 @@
 import React from 'react';
-
+import TodoListComponent from '../components/todoList/todoListComponent';
 class MainPage extends React.Component {
   render() {
-    return <h1>MainPage</h1>
+    return <TodoListComponent />
   }
 }
 

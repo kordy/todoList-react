@@ -10,8 +10,14 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     port: 8080,
-    contentBase: path.join(__dirname, './build')
+    hot: true,
+    contentBase: [
+      path.join(__dirname, './build')
+    ]
   },
+  plugins: [
+    new webpack.OldWatchingPlugin()
+  ],
   module: {
     loaders: [
       {
@@ -19,7 +25,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'stage-0', 'react']
         }
       }
     ]
