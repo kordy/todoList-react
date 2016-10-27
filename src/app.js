@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Routes from './routes.js'
-import { Provider, connect } from 'react-redux'
-import store from './store/store.js';
+import { Router, useRouterHistory, browserHistory  } from 'react-router';
+import routes from './routes.js';
+import { Provider, connect } from 'react-redux';
+import store from './store/store';
 
-ReactDom.render(
+ReactDOM.render(
 		<Provider store={store}>
-			<Routes/>
+			<Router routes={routes} history={browserHistory}/>
 		</Provider>,
 		document.getElementById('application')
 );

@@ -1,4 +1,5 @@
 import React from 'react';
+import './less/todoListComponent.less';
 
 export default (props) => {
   return (

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import tasks from './tasksReducers.js';
+import tasks from './tasksReducer';
 
 const todoApp = combineReducers({
   tasks

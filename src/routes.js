@@ -1,16 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import {Route, IndexRoute} from 'react-router';
 import MainPage from './pages/mainPage.js';
 
-class Routes extends React.Component {
-  render() {
-    return (
-      <Router history={browserHistory}>
-        <Route path="/" component={MainPage} />
-      </Router>
-    )
-  }
-}
+const routes = (
+    <div>
+      <Route path="/" component={MainPage} />
+    </div>
+);
 
-export default Routes
+export default routes;

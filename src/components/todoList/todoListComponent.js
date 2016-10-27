@@ -2,60 +2,35 @@ import React from 'react';
 import TodoListItem from './todoListItemComponent';
 import TodoListAdd from './todoListAddComponent';
 import { connect } from 'react-redux';
-import TaskActions from './todoListAddComponent';
+import TaskActions from '../../actions/taskActions';
 
 class todoList extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      newTask: '',
-      items: [
-        {
-          id: '1',
-          name: 'Вспомнить Реакт'
-        },
-        {
-          id: '2',
-          name: 'Заплатить за ипотеку'
-        },
-        {
-          id: '3',
-          name: 'Забрать бумажки'
-        }
-      ]
-    };
   }
 
   newTaskChange = (e) => {
-    this.setState({
-      newTask: e.target.value
-    });
+    let { dispatch } = this.props;
+    e.preventDefault();
+    dispatch(TaskActions.newTaskChange(e.target.value));
   };
 
   addTask = (e) => {
+    let { dispatch, tasks } = this.props;
     e.preventDefault();
-
-    var items = this.state.items.slice(0);
-    items.push({
-      name: this.state.newTask
-    });
-    this.setState({
-      items: items,
-      newTask: ''
-    });
+    if (!tasks.newTask.trim()) return false;
+    dispatch(TaskActions.taskAdd());
     return false;
   };
 
   removeTask = (index) => {
-    var items = this.state.items.slice(0);
-    items.splice(index, 1);
-    this.setState({
-      items: items
-    });
+    let { dispatch } = this.props;
+    dispatch(TaskActions.taskRemove(index));
   };
 
   render() {
-    let {newTask, items} = this.state;
+    let {taskList, newTask} = this.props.tasks;
+
     return (
       <div className='todo-list'>
         <TodoListAdd
@@ -64,7 +39,7 @@ class todoList extends React.Component {
           addTask={ this.addTask }
         />
         {
-          items.map((item, index) => {
+          taskList.map((item, index) => {
             return <TodoListItem
               key={ index }
               index={ index }
