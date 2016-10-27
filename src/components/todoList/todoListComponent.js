@@ -1,6 +1,8 @@
 import React from 'react';
 import TodoListItem from './todoListItemComponent';
 import TodoListAdd from './todoListAddComponent';
+import { connect } from 'react-redux';
+import TaskActions from './todoListAddComponent';
 
 class todoList extends React.Component {
   constructor(props, context) {
@@ -32,6 +34,7 @@ class todoList extends React.Component {
 
   addTask = (e) => {
     e.preventDefault();
+
     var items = this.state.items.slice(0);
     items.push({
       name: this.state.newTask
@@ -66,7 +69,7 @@ class todoList extends React.Component {
               key={ index }
               index={ index }
               removeTask={ this.removeTask }
-              {...item}/>
+              { ...item }/>
           })
         }
       </div>
@@ -74,4 +77,10 @@ class todoList extends React.Component {
   }
 }
 
-export default todoList;
+function props(state) {
+  return {
+    tasks: state.tasks
+  };
+}
+
+export default connect(props)(todoList);

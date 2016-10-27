@@ -16,7 +16,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.OldWatchingPlugin()
+    new webpack.OldWatchingPlugin(),
+    devtool: "eval-cheap-module-source-map"
   ],
   module: {
     loaders: [
