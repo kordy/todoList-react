@@ -21,6 +21,7 @@ module.exports = {
     new ExtractTextPlugin('style.css',{allChunks: true})  //выносим css в отельный файл, allChunks - запаковывает в этот файл все стили, даже те которые подгружаются динамически через require.ensurance
   ],
   devtool: "eval-cheap-module-source-map",
+
   module: {
     loaders: [
       {

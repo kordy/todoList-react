@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoForm from '../todoForm/todoFormComponent';
 import TodoListItem from './todoListItemComponent';
 import TodoListAdd from './todoListAddComponent';
 import { connect } from 'react-redux';
@@ -33,6 +34,7 @@ class todoList extends React.Component {
 
     return (
       <div className='todo-list'>
+        <TodoForm />
         <TodoListAdd
           newTask={ newTask }
           newTaskChange={ this.newTaskChange }
