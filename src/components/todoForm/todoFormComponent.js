@@ -46,16 +46,26 @@ class todoForm extends React.Component {
     e.preventDefault();
     this.setState({taskDescription: e.target.value});
   }
-  fieldChange(fields) {
-    console.log('herre');
+  onSubmit(fields) {
+    console.log(fields);
+  }
+  onFieldChange(value, name, fields) {
+    console.log('fieldChange');
+    console.log(name, value);
+    console.log(fields);
+  }
+  onCustomChange(value, name) {
+    console.log('customChange');
   }
   render() {
     return (
       <div className='todo-form'>
-        <Form>
-          <Field info={ this.fields.name } onChange={ this.fieldChange } />
-          <Field info={ this.fields.date } onChange={ this.fieldChange } />
-          <Field info={ this.fields.description } onChange={ this.fieldChange } />
+        <Form onSubmit={ this.onSubmit } onFieldChange={ this.onFieldChange }>
+          <div className='fieldwrap'>
+            <Field info={ this.fields.name } onCustomChange= { this.onCustomChange } />
+          </div>
+          <Field info={ this.fields.date } />
+          <Field info={ this.fields.description } />
           <button className='todo-form__button'>add</button>
         </Form>
       </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Form from '../form/formComponent';
 
 class Field extends React.Component {
   constructor(props, context) {
@@ -10,10 +9,14 @@ class Field extends React.Component {
   }
 
   _onChange = (e) => {
+    let value = e.target.value;
     this.setState({
-      value: e.target.value
+      value: value
     })
-    this.props.onChange(this.state.value, this.props.info.name);
+    this.props.onChange(value, this.props.info.name);
+    if (this.props.onCustomChange && typeof this.props.onCustomChange === 'function') {
+      this.props.onCustomChange(value, this.props.info.name);
+    }
   }
 
   getField() {
@@ -44,6 +47,7 @@ class Field extends React.Component {
   }
 
   render() {
+    console.log('render');
     return (
       <div className='field'>
         { this.getField() }
