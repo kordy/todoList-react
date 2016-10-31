@@ -15,7 +15,15 @@ class todoForm extends React.Component {
         name: 'name',
         value: '',
         type: 'text',
-        required: true
+        required: true,
+        maxLength: 15,
+        minLength: 3,
+        validation: function(value, name, fields) {
+          // return 'ERROR';
+          // console.log('validation');
+          // console.log(value, name);
+          // console.log(fields);
+        }
       },
       date: {
         name: 'date',
@@ -46,27 +54,17 @@ class todoForm extends React.Component {
     e.preventDefault();
     this.setState({taskDescription: e.target.value});
   }
-  onSubmit(fields) {
-    console.log(fields);
-  }
-  onFieldChange(value, name, fields) {
-    console.log('fieldChange');
-    console.log(name, value);
-    console.log(fields);
-  }
-  onCustomChange(value, name) {
-    console.log('customChange');
-  }
+
   render() {
     return (
       <div className='todo-form'>
-        <Form onSubmit={ this.onSubmit } onFieldChange={ this.onFieldChange }>
+        <Form onSubmit={ this.props.onSubmit } onFieldChange={ this.props.onFieldChange }>
           <div className='fieldwrap'>
-            <Field info={ this.fields.name } onCustomChange= { this.onCustomChange } />
+            <Field info={ this.fields.name } />
           </div>
           <Field info={ this.fields.date } />
           <Field info={ this.fields.description } />
-          <button className='todo-form__button'>add</button>
+          <button className='form__button'>add</button>
         </Form>
       </div>
     )

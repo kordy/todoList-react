@@ -29,16 +29,28 @@ class todoList extends React.Component {
     dispatch(TaskActions.taskRemove(index));
   };
 
+  onSubmit = (fields) => {
+    let { dispatch, tasks } = this.props;
+    let name = fields.name.value.trim();
+    if (!name) return false;
+    dispatch(TaskActions.taskAdd(name));
+    return false;
+  }
+
+  onFieldChange(value, name, fields) {
+    console.log('fieldChange');
+    console.log(name, value);
+    console.log(fields);
+  }
+
   render() {
     let {taskList, newTask} = this.props.tasks;
 
     return (
       <div className='todo-list'>
-        <TodoForm />
-        <TodoListAdd
-          newTask={ newTask }
-          newTaskChange={ this.newTaskChange }
-          addTask={ this.addTask }
+        <TodoForm
+          onSubmit={ this.onSubmit }
+          onFieldChange={ this.onFieldChange }
         />
         {
           taskList.map((item, index) => {

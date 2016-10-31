@@ -26,18 +26,18 @@ function removeTaskByIndex(state, index) {
   });
 }
 
-function addTask(state) {
+function addTask(state, value) {
   var taskList = state.taskList.slice(0);
   taskList.push({
-    name: state.newTask
+    name: value
   });
   return Object.assign({}, state, {
-    taskList: taskList,
-    newTask: ''
+    taskList: taskList
   });
 }
 
 function tasks(state = baseState, action) {
+  console.log('22222');
   switch (action.type) {
     case TaskConstants.TASK_REMOVE:
       return removeTaskByIndex(state, action.index);
@@ -46,7 +46,8 @@ function tasks(state = baseState, action) {
         newTask: action.value
       });
     case TaskConstants.TASK_ADD:
-      return addTask(state);
+      console.log(action);
+      return addTask(state, action.value);
     default:
       return state;
   }

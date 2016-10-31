@@ -1,8 +1,9 @@
 import TaskConstants from '../constants/tasksConstants.js';
 
-function taskAdd() {
+function taskAdd(value) {
   return {
-    type: TaskConstants.TASK_ADD
+    type: TaskConstants.TASK_ADD,
+    value: value
   };
 }
 
